@@ -366,5 +366,3 @@ It will generate Output :  "It's working”
     UIImageWriteToSavedPhotosAlbum(rotatedImage, self, nil, nil);
     
 
-
-
