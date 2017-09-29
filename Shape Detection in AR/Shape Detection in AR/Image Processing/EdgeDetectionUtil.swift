@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreML
+import SceneKit
 
 
 class EdgeDetectionUtil {
@@ -56,33 +57,26 @@ class EdgeDetectionUtil {
         let colorSpace = CGColorSpaceCreateDeviceGray()
         let cgImage = CGImage(width: inputW, height: inputH, bitsPerComponent: 8, bitsPerPixel: 8, bytesPerRow: inputW, space: colorSpace, bitmapInfo: [], provider: dataProvider, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
         let resultImage = UIImage(cgImage: cgImage!)
-
-        // call open CV frameworks to perform the rest actions
-        getShapes(edgeDetectedImage: resultImage)
         return resultImage
     }
     
     //MARK:- Open CV helping methods
-    class func getShapes(edgeDetectedImage : UIImage) {
+    class func getShapes(edgeDetectedImage : UIImage) -> SCNScene {
         let openCVWrapper = OpenCVWrapper()
         openCVWrapper.shapeIdentify(edgeDetectedImage)
         
         // get the updates of shapes and positions in shapesResults dictionary
         if let shapesArr = openCVWrapper.shapesResults as? [[String : Any]] {
-            // retrieve shapes
+            // printing
             for each in shapesArr {
                 if let dictionary = each.first {
-                    switch dictionary.key {
-                    case "circle" :
-                        //let value = dictionary.value as! [String : Float]
-                        print("\n\nShape : \(dictionary.key) Radius & Center : \(dictionary.value)")
-                    default:
-                         //let value = dictionary.value as! [[String : Int]]
-                         print("\n\nShape : \(dictionary.key) positions : \(dictionary.value)")
-                    }
+                     print("\n\nShape : \(dictionary.key) Values : \(dictionary.value)")
                 }
             }
+            // retrieve shapes
+            return SceneNodeCreator.getSceneNode(shapreResults: shapesArr)
         }
+        return SCNScene()
     }
 }
 

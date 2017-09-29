@@ -110,13 +110,11 @@
                                                 @"center.y":[NSNumber numberWithFloat:center.y]
                                                 };
                     [positions addObject:dict];
-                } else {
-                    for (int j = 0; j < approx.size(); j++) {
-                        NSDictionary * dict = @{ @"x":[NSNumber numberWithInt:approx[j].x], @"y":[NSNumber numberWithInt:approx[j].y]};
-                        [positions addObject:dict];
-                    }
                 }
-                
+                for (int j = 0; j < approx.size(); j++) {
+                    NSDictionary * dict = @{ @"x":[NSNumber numberWithInt:approx[j].x], @"y":[NSNumber numberWithInt:approx[j].y]};
+                    [positions addObject:dict];
+                }
                 [self.shapesResults addObject:@{shape:positions}]; // update the dictionary
             }
         }
