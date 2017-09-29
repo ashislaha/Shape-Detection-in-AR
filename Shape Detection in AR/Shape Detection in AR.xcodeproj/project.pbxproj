@@ -1,0 +1,698 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		801C924C1F78B99900C00BAC /* EdgeDetectionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C924B1F78B99900C00BAC /* EdgeDetectionUtil.swift */; };
+		801C92501F78CA2700C00BAC /* edge_detection.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 801C924F1F78CA2200C00BAC /* edge_detection.mlmodel */; };
+		806141601F7BFC5400654670 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8061415F1F7BFC5400654670 /* OpenCVWrapper.mm */; };
+		80D10F6F1F751D39002C21FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F6E1F751D39002C21FB /* AppDelegate.swift */; };
+		80D10F711F751D39002C21FB /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D10F701F751D39002C21FB /* art.scnassets */; };
+		80D10F731F751D39002C21FB /* ShapeDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F721F751D39002C21FB /* ShapeDetectionViewController.swift */; };
+		80D10F761F751D39002C21FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D10F741F751D39002C21FB /* Main.storyboard */; };
+		80D10F781F751D39002C21FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D10F771F751D39002C21FB /* Assets.xcassets */; };
+		80D10F7B1F751D39002C21FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D10F791F751D39002C21FB /* LaunchScreen.storyboard */; };
+		80D10F861F751D39002C21FB /* Shape_Detection_in_ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F851F751D39002C21FB /* Shape_Detection_in_ARTests.swift */; };
+		80D10F911F751D39002C21FB /* Shape_Detection_in_ARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F901F751D39002C21FB /* Shape_Detection_in_ARUITests.swift */; };
+		80D10FA01F752274002C21FB /* ImagePreProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F9F1F752274002C21FB /* ImagePreProcessing.swift */; };
+		80D10FA41F753452002C21FB /* SceneNodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10FA31F7522A8002C21FB /* SceneNodeCreator.swift */; };
+		8E7DEE16174F15CB52519E76 /* libPods-Shape Detection in AR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6640ED5ED7C6B1EE5D0D5C5B /* libPods-Shape Detection in AR.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80D10F821F751D39002C21FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80D10F631F751D39002C21FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80D10F6A1F751D39002C21FB;
+			remoteInfo = "Shape Detection in AR";
+		};
+		80D10F8D1F751D39002C21FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80D10F631F751D39002C21FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80D10F6A1F751D39002C21FB;
+			remoteInfo = "Shape Detection in AR";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D8D0B105345A11026AC202B /* Pods-Shape Detection in AR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Detection in AR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shape Detection in AR/Pods-Shape Detection in AR.debug.xcconfig"; sourceTree = "<group>"; };
+		54C0646099A43F2115952DC6 /* Pods-Shape Detection in AR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Detection in AR.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shape Detection in AR/Pods-Shape Detection in AR.release.xcconfig"; sourceTree = "<group>"; };
+		6640ED5ED7C6B1EE5D0D5C5B /* libPods-Shape Detection in AR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shape Detection in AR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		801C924B1F78B99900C00BAC /* EdgeDetectionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeDetectionUtil.swift; sourceTree = "<group>"; };
+		801C924F1F78CA2200C00BAC /* edge_detection.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = edge_detection.mlmodel; path = "../../../CoreML creation/edge_detection.mlmodel"; sourceTree = "<group>"; };
+		8061415D1F7BFC5400654670 /* Shape Detection in AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shape Detection in AR-Bridging-Header.h"; sourceTree = "<group>"; };
+		8061415E1F7BFC5400654670 /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		8061415F1F7BFC5400654670 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		80D10F6B1F751D39002C21FB /* Shape Detection in AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shape Detection in AR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80D10F6E1F751D39002C21FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		80D10F701F751D39002C21FB /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		80D10F721F751D39002C21FB /* ShapeDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeDetectionViewController.swift; sourceTree = "<group>"; };
+		80D10F751F751D39002C21FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		80D10F771F751D39002C21FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		80D10F7A1F751D39002C21FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		80D10F7C1F751D39002C21FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80D10F811F751D39002C21FB /* Shape Detection in ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shape Detection in ARTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80D10F851F751D39002C21FB /* Shape_Detection_in_ARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape_Detection_in_ARTests.swift; sourceTree = "<group>"; };
+		80D10F871F751D39002C21FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80D10F8C1F751D39002C21FB /* Shape Detection in ARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shape Detection in ARUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80D10F901F751D39002C21FB /* Shape_Detection_in_ARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape_Detection_in_ARUITests.swift; sourceTree = "<group>"; };
+		80D10F921F751D39002C21FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80D10F9F1F752274002C21FB /* ImagePreProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreProcessing.swift; sourceTree = "<group>"; };
+		80D10FA31F7522A8002C21FB /* SceneNodeCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeCreator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80D10F681F751D39002C21FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E7DEE16174F15CB52519E76 /* libPods-Shape Detection in AR.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D10F7E1F751D39002C21FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D10F891F751D39002C21FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80D10F621F751D39002C21FB = {
+			isa = PBXGroup;
+			children = (
+				80D10F6D1F751D39002C21FB /* Shape Detection in AR */,
+				80D10F841F751D39002C21FB /* Shape Detection in ARTests */,
+				80D10F8F1F751D39002C21FB /* Shape Detection in ARUITests */,
+				80D10F6C1F751D39002C21FB /* Products */,
+				A96CD1A8B8B27A093B97EF06 /* Pods */,
+				E20F9D2C60EE6D7B04122AB1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		80D10F6C1F751D39002C21FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80D10F6B1F751D39002C21FB /* Shape Detection in AR.app */,
+				80D10F811F751D39002C21FB /* Shape Detection in ARTests.xctest */,
+				80D10F8C1F751D39002C21FB /* Shape Detection in ARUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80D10F6D1F751D39002C21FB /* Shape Detection in AR */ = {
+			isa = PBXGroup;
+			children = (
+				80D10F6E1F751D39002C21FB /* AppDelegate.swift */,
+				80D10F721F751D39002C21FB /* ShapeDetectionViewController.swift */,
+				80D10FA21F7522A8002C21FB /* SceneUtility */,
+				80D10FA11F75227C002C21FB /* Image Processing */,
+				80D10F9E1F751FD2002C21FB /* View */,
+				80D10F7C1F751D39002C21FB /* Info.plist */,
+			);
+			path = "Shape Detection in AR";
+			sourceTree = "<group>";
+		};
+		80D10F841F751D39002C21FB /* Shape Detection in ARTests */ = {
+			isa = PBXGroup;
+			children = (
+				80D10F851F751D39002C21FB /* Shape_Detection_in_ARTests.swift */,
+				80D10F871F751D39002C21FB /* Info.plist */,
+			);
+			path = "Shape Detection in ARTests";
+			sourceTree = "<group>";
+		};
+		80D10F8F1F751D39002C21FB /* Shape Detection in ARUITests */ = {
+			isa = PBXGroup;
+			children = (
+				80D10F901F751D39002C21FB /* Shape_Detection_in_ARUITests.swift */,
+				80D10F921F751D39002C21FB /* Info.plist */,
+			);
+			path = "Shape Detection in ARUITests";
+			sourceTree = "<group>";
+		};
+		80D10F9E1F751FD2002C21FB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				80D10F701F751D39002C21FB /* art.scnassets */,
+				80D10F741F751D39002C21FB /* Main.storyboard */,
+				80D10F771F751D39002C21FB /* Assets.xcassets */,
+				80D10F791F751D39002C21FB /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		80D10FA11F75227C002C21FB /* Image Processing */ = {
+			isa = PBXGroup;
+			children = (
+				801C924F1F78CA2200C00BAC /* edge_detection.mlmodel */,
+				80D10F9F1F752274002C21FB /* ImagePreProcessing.swift */,
+				801C924B1F78B99900C00BAC /* EdgeDetectionUtil.swift */,
+				8061415E1F7BFC5400654670 /* OpenCVWrapper.h */,
+				8061415F1F7BFC5400654670 /* OpenCVWrapper.mm */,
+				8061415D1F7BFC5400654670 /* Shape Detection in AR-Bridging-Header.h */,
+			);
+			path = "Image Processing";
+			sourceTree = "<group>";
+		};
+		80D10FA21F7522A8002C21FB /* SceneUtility */ = {
+			isa = PBXGroup;
+			children = (
+				80D10FA31F7522A8002C21FB /* SceneNodeCreator.swift */,
+			);
+			path = SceneUtility;
+			sourceTree = "<group>";
+		};
+		A96CD1A8B8B27A093B97EF06 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D0B105345A11026AC202B /* Pods-Shape Detection in AR.debug.xcconfig */,
+				54C0646099A43F2115952DC6 /* Pods-Shape Detection in AR.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E20F9D2C60EE6D7B04122AB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6640ED5ED7C6B1EE5D0D5C5B /* libPods-Shape Detection in AR.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		80D10F6A1F751D39002C21FB /* Shape Detection in AR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80D10F951F751D39002C21FB /* Build configuration list for PBXNativeTarget "Shape Detection in AR" */;
+			buildPhases = (
+				C235AA3FDC50C3D6EAB1F849 /* [CP] Check Pods Manifest.lock */,
+				80D10F671F751D39002C21FB /* Sources */,
+				80D10F681F751D39002C21FB /* Frameworks */,
+				80D10F691F751D39002C21FB /* Resources */,
+				140E45D7B7865229A3910005 /* [CP] Embed Pods Frameworks */,
+				CC2E531B0EABF3AFE836D392 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shape Detection in AR";
+			productName = "Shape Detection in AR";
+			productReference = 80D10F6B1F751D39002C21FB /* Shape Detection in AR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		80D10F801F751D39002C21FB /* Shape Detection in ARTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80D10F981F751D39002C21FB /* Build configuration list for PBXNativeTarget "Shape Detection in ARTests" */;
+			buildPhases = (
+				80D10F7D1F751D39002C21FB /* Sources */,
+				80D10F7E1F751D39002C21FB /* Frameworks */,
+				80D10F7F1F751D39002C21FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80D10F831F751D39002C21FB /* PBXTargetDependency */,
+			);
+			name = "Shape Detection in ARTests";
+			productName = "Shape Detection in ARTests";
+			productReference = 80D10F811F751D39002C21FB /* Shape Detection in ARTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		80D10F8B1F751D39002C21FB /* Shape Detection in ARUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80D10F9B1F751D39002C21FB /* Build configuration list for PBXNativeTarget "Shape Detection in ARUITests" */;
+			buildPhases = (
+				80D10F881F751D39002C21FB /* Sources */,
+				80D10F891F751D39002C21FB /* Frameworks */,
+				80D10F8A1F751D39002C21FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80D10F8E1F751D39002C21FB /* PBXTargetDependency */,
+			);
+			name = "Shape Detection in ARUITests";
+			productName = "Shape Detection in ARUITests";
+			productReference = 80D10F8C1F751D39002C21FB /* Shape Detection in ARUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80D10F631F751D39002C21FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Ashis Laha";
+				TargetAttributes = {
+					80D10F6A1F751D39002C21FB = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					80D10F801F751D39002C21FB = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 80D10F6A1F751D39002C21FB;
+					};
+					80D10F8B1F751D39002C21FB = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 80D10F6A1F751D39002C21FB;
+					};
+				};
+			};
+			buildConfigurationList = 80D10F661F751D39002C21FB /* Build configuration list for PBXProject "Shape Detection in AR" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 80D10F621F751D39002C21FB;
+			productRefGroup = 80D10F6C1F751D39002C21FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80D10F6A1F751D39002C21FB /* Shape Detection in AR */,
+				80D10F801F751D39002C21FB /* Shape Detection in ARTests */,
+				80D10F8B1F751D39002C21FB /* Shape Detection in ARUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80D10F691F751D39002C21FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D10F711F751D39002C21FB /* art.scnassets in Resources */,
+				80D10F7B1F751D39002C21FB /* LaunchScreen.storyboard in Resources */,
+				80D10F781F751D39002C21FB /* Assets.xcassets in Resources */,
+				80D10F761F751D39002C21FB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D10F7F1F751D39002C21FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D10F8A1F751D39002C21FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		140E45D7B7865229A3910005 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shape Detection in AR/Pods-Shape Detection in AR-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C235AA3FDC50C3D6EAB1F849 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC2E531B0EABF3AFE836D392 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shape Detection in AR/Pods-Shape Detection in AR-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80D10F671F751D39002C21FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D10F731F751D39002C21FB /* ShapeDetectionViewController.swift in Sources */,
+				80D10FA41F753452002C21FB /* SceneNodeCreator.swift in Sources */,
+				806141601F7BFC5400654670 /* OpenCVWrapper.mm in Sources */,
+				80D10F6F1F751D39002C21FB /* AppDelegate.swift in Sources */,
+				801C92501F78CA2700C00BAC /* edge_detection.mlmodel in Sources */,
+				80D10FA01F752274002C21FB /* ImagePreProcessing.swift in Sources */,
+				801C924C1F78B99900C00BAC /* EdgeDetectionUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D10F7D1F751D39002C21FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D10F861F751D39002C21FB /* Shape_Detection_in_ARTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D10F881F751D39002C21FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D10F911F751D39002C21FB /* Shape_Detection_in_ARUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80D10F831F751D39002C21FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80D10F6A1F751D39002C21FB /* Shape Detection in AR */;
+			targetProxy = 80D10F821F751D39002C21FB /* PBXContainerItemProxy */;
+		};
+		80D10F8E1F751D39002C21FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80D10F6A1F751D39002C21FB /* Shape Detection in AR */;
+			targetProxy = 80D10F8D1F751D39002C21FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		80D10F741F751D39002C21FB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80D10F751F751D39002C21FB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		80D10F791F751D39002C21FB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80D10F7A1F751D39002C21FB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		80D10F931F751D39002C21FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		80D10F941F751D39002C21FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80D10F961F751D39002C21FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D8D0B105345A11026AC202B /* Pods-Shape Detection in AR.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3Z9URG96M;
+				INFOPLIST_FILE = "Shape Detection in AR/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ALaha.Shape-Detection";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Shape Detection in AR/Image Processing/Shape Detection in AR-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		80D10F971F751D39002C21FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54C0646099A43F2115952DC6 /* Pods-Shape Detection in AR.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3Z9URG96M;
+				INFOPLIST_FILE = "Shape Detection in AR/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ALaha.Shape-Detection";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Shape Detection in AR/Image Processing/Shape Detection in AR-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		80D10F991F751D39002C21FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 87F557PJ6U;
+				INFOPLIST_FILE = "Shape Detection in ARTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ALaha.Shape-Detection-in-ARTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shape Detection in AR.app/Shape Detection in AR";
+			};
+			name = Debug;
+		};
+		80D10F9A1F751D39002C21FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 87F557PJ6U;
+				INFOPLIST_FILE = "Shape Detection in ARTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ALaha.Shape-Detection-in-ARTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shape Detection in AR.app/Shape Detection in AR";
+			};
+			name = Release;
+		};
+		80D10F9C1F751D39002C21FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 87F557PJ6U;
+				INFOPLIST_FILE = "Shape Detection in ARUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ALaha.Shape-Detection-in-ARUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Shape Detection in AR";
+			};
+			name = Debug;
+		};
+		80D10F9D1F751D39002C21FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 87F557PJ6U;
+				INFOPLIST_FILE = "Shape Detection in ARUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ALaha.Shape-Detection-in-ARUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Shape Detection in AR";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80D10F661F751D39002C21FB /* Build configuration list for PBXProject "Shape Detection in AR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D10F931F751D39002C21FB /* Debug */,
+				80D10F941F751D39002C21FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80D10F951F751D39002C21FB /* Build configuration list for PBXNativeTarget "Shape Detection in AR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D10F961F751D39002C21FB /* Debug */,
+				80D10F971F751D39002C21FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80D10F981F751D39002C21FB /* Build configuration list for PBXNativeTarget "Shape Detection in ARTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D10F991F751D39002C21FB /* Debug */,
+				80D10F9A1F751D39002C21FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80D10F9B1F751D39002C21FB /* Build configuration list for PBXNativeTarget "Shape Detection in ARUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D10F9C1F751D39002C21FB /* Debug */,
+				80D10F9D1F751D39002C21FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 80D10F631F751D39002C21FB /* Project object */;
+}
