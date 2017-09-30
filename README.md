@@ -9,7 +9,7 @@ Detect the shape of drawing objects (classes - triangle, rectangle, circle) and 
 ![img_0225](https://user-images.githubusercontent.com/10649284/31043244-59f29ebe-a5d6-11e7-87a6-6ca9209d961f.JPG)
 
 # Find Contour & Fill it for visualization :
-![img_0226](https://user-images.githubusercontent.com/10649284/31043219-10c73182-a5d6-11e7-8dd0-f1946c45809f.JPG)
+![img_0226](https://user-images.githubusercontent.com/10649284/31043257-8855e70c-a5d6-11e7-8a16-c2a4afee93a9.JPG)
 
 # Create Scene graph :
 ![img_4427d21af932-1](https://user-images.githubusercontent.com/10649284/31043182-53017ad6-a5d5-11e7-9067-3100c58808c2.jpeg)
