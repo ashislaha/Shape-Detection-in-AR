@@ -6,10 +6,10 @@ Detect the shape of drawing objects (classes - triangle, rectangle, circle) and 
 ![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
 
 # Edge Detected Image : 
-![img_0225](https://user-images.githubusercontent.com/10649284/31043179-4e555c78-a5d5-11e7-9a2f-85819f7f8cda.JPG)
+![img_0225](https://user-images.githubusercontent.com/10649284/31043216-0f4cabfc-a5d6-11e7-8c31-e88403182802.JPG)
 
 # Find Contour & Fill it for visualization :
-![img_0226](https://user-images.githubusercontent.com/10649284/31043180-50c4a7fc-a5d5-11e7-9ba2-e34b66afd3a4.JPG)
+![img_0226](https://user-images.githubusercontent.com/10649284/31043219-10c73182-a5d6-11e7-8dd0-f1946c45809f.JPG)
 
 # Create Scene graph :
 ![img_4427d21af932-1](https://user-images.githubusercontent.com/10649284/31043182-53017ad6-a5d5-11e7-9067-3100c58808c2.jpeg)
@@ -131,7 +131,7 @@ metadata {
 
 ![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
 
-![img_0225](https://user-images.githubusercontent.com/10649284/31043179-4e555c78-a5d5-11e7-9a2f-85819f7f8cda.JPG)
+![img_0225](https://user-images.githubusercontent.com/10649284/31043216-0f4cabfc-a5d6-11e7-8c31-e88403182802.JPG)
 
 # Open CV framework added : 
 
