@@ -119,34 +119,31 @@ metadata {
 ![img_0086](https://user-images.githubusercontent.com/10649284/30848427-c1cdc94a-a2bc-11e7-827f-767a1ced4cea.PNG) 
 
 ![img_0085](https://user-images.githubusercontent.com/10649284/30851681-f14290ac-a2c6-11e7-9f4b-1af02cde4908.JPG)
-
-
- NEXT TASK : Convert the coordinates from Image view into real-coordinates.
  
 
- ### Open CV framework added : 
+# Open CV framework added : 
 
-# step 1 : create pod file with : pod 'OpenCV'
+## step 1 : create pod file with : pod 'OpenCV'
 
-# step 2 : Create a bridging header 
+## step 2 : Create a bridging header 
 	Create an objective-c file from “Cocoa-touch class”
 	name it - OpenCVWrapper 
 	Xcode is smart and proposes to create a bridging header. Click on Create Bridging Header.
 
-# step 3 : Configure the bridging header ($project_name-Bridging-Header.h)
+## step 3 : Configure the bridging header ($project_name-Bridging-Header.h)
 	#import "OpenCVWrapper.h" in the bridging header 
 
-# step 4 : Change to Objective-c++ 
+## step 4 : Change to Objective-c++ 
 	change from OpenCVWrapper.m to OpenCVWrapper.mm
 
-# step 5 : Importing opencv
+## step 5 : Importing opencv
 	#import <opencv2/opencv.hpp>
 	#import "OpenCVWrapper.h"
 	into OpenCVWrapper.mm file. 
 	
-NOTED : You will get ERROR : enum { NO, FEATHER, MULTI_BAND }; because of “NO” enum name. #import <opencv2/opencv.hpp> above all other imports will resolve the issue.
+### NOTED : You will get ERROR : enum { NO, FEATHER, MULTI_BAND }; because of “NO” enum name. #import <opencv2/opencv.hpp> above all other imports will resolve the issue.
 
-# Step 6 : Write a test code 
+## Step 6 : Write a test code 
 	
 	In OpenCVWrapper.h —> -(void) isOpenCVWorking;
 	In OpenCVWrapper.mm —>  @Implementation 
