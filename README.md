@@ -1,6 +1,19 @@
 # Shape-Detection-in-AR
 
 Detect the shape of drawing objects (classes - triangle, rectangle, circle) and draw in Augmented Reality.
+
+# Input Image : 
+![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
+
+# Edge Detected Image : 
+![img_0225](https://user-images.githubusercontent.com/10649284/31043179-4e555c78-a5d5-11e7-9a2f-85819f7f8cda.JPG)
+
+# Find Contour & Fill it for visualization :
+![img_0226](https://user-images.githubusercontent.com/10649284/31043180-50c4a7fc-a5d5-11e7-9ba2-e34b66afd3a4.JPG)
+
+# Create Scene graph :
+![img_4427d21af932-1](https://user-images.githubusercontent.com/10649284/31043182-53017ad6-a5d5-11e7-9067-3100c58808c2.jpeg)
+
  
 ## Basic Steps : 
 
@@ -116,10 +129,9 @@ metadata {
 --------------------------------------------------------------------------
 ### Use the CoreML Model for detecting Edge of ARFrame captured Camera Image
 
-![img_0086](https://user-images.githubusercontent.com/10649284/30848427-c1cdc94a-a2bc-11e7-827f-767a1ced4cea.PNG) 
+![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
 
-![img_0085](https://user-images.githubusercontent.com/10649284/30851681-f14290ac-a2c6-11e7-9f4b-1af02cde4908.JPG)
- 
+![img_0225](https://user-images.githubusercontent.com/10649284/31043179-4e555c78-a5d5-11e7-9a2f-85819f7f8cda.JPG)
 
 # Open CV framework added : 
 
