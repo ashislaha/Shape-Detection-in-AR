@@ -25,6 +25,8 @@ enum ArrowDirection {
 
 class SceneNodeCreator {
     
+    static let windowShift : (x:Float,y:Float) = (0.25,0.0) // default is (0.0,0.0)
+    
     //MARK:- Create straight Line
     class func createline(from : SCNVector3 , to : SCNVector3) -> SCNNode { // Z is static
         // calculate Angle
@@ -52,11 +54,12 @@ class SceneNodeCreator {
     //MARK:- Create Circle
     class func createCircle(center : SCNVector3, radius : CGFloat) -> SCNNode {
         var geometry : SCNGeometry!
-        geometry = SCNCapsule(capRadius: radius, height: radius)
+        geometry = SCNCylinder(radius: radius, height: 0.01)
         geometry.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
         geometry.firstMaterial?.specular.contents = UIColor.getRandomColor()
         let node = SCNNode(geometry: geometry)
         node.position = center
+        node.rotation = SCNVector4Make(1, 0, 0, Float(Double.pi/2)) // along X axis
         return node
     }
     
@@ -66,10 +69,10 @@ class SceneNodeCreator {
         let points : [(Float,Float)] = [(0.0,0.0),(0.5,0.0), (0.5,0.5), (0.0,0.5)]
         
         for i in 0..<4 {
-            let x1 = points[i].0
-            let y1 = points[i].1
-            let x2 = points[(i+1)%points.count].0
-            let y2 = points[(i+1)%points.count].1
+            let x1 = points[i].0-SceneNodeCreator.windowShift.x
+            let y1 = points[i].1-SceneNodeCreator.windowShift.y
+            let x2 = points[(i+1)%points.count].0-SceneNodeCreator.windowShift.x
+            let y2 = points[(i+1)%points.count].1-SceneNodeCreator.windowShift.y
             
             let from = SCNVector3Make(x1,y1,0)
             let to = SCNVector3Make(x2,y2,0)
@@ -97,8 +100,8 @@ class SceneNodeCreator {
                             let x = circleParams["center.x"] ?? 0.0
                             let y = circleParams["center.y"] ?? 0.0
                             let radius = circleParams["radius"] ?? 0.0
-                            let center = SCNVector3Make(Float(Float(imageWidth)-y)/convertionRatio, Float(Float(imageWidth)-x)/convertionRatio, 0)
-                            scene.rootNode.addChildNode(SceneNodeCreator.createCircle(center: center, radius: CGFloat(radius/convertionRatio*2.0)))
+                            let center = SCNVector3Make(Float(Float(imageWidth)-y)/convertionRatio-SceneNodeCreator.windowShift.x, Float(Float(imageWidth)-x)/convertionRatio-SceneNodeCreator.windowShift.y, 0)
+                            scene.rootNode.addChildNode(SceneNodeCreator.createCircle(center: center, radius: CGFloat(radius/convertionRatio)))
                         }
                     } else { // draw lines between points
                         for i in 1..<values.count { // connect all points usning straight lines (basic)
@@ -108,8 +111,8 @@ class SceneNodeCreator {
                             let x2 = values[next%values.count]["x"] as! Int
                             let y2 = values[next%values.count]["y"] as! Int
                             
-                            let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
-                            let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
+                            let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio-SceneNodeCreator.windowShift.x, Float(imageWidth-x1)/convertionRatio-SceneNodeCreator.windowShift.y, 0)
+                            let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio-SceneNodeCreator.windowShift.x, Float(imageWidth-x2)/convertionRatio-SceneNodeCreator.windowShift.y, 0)
                             scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
                         }
                     }
@@ -122,8 +125,8 @@ class SceneNodeCreator {
                         
                         // skip the boundary Rectangle here
                         if x1>10 && x1<490 {
-                        let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
-                        let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
+                        let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio-SceneNodeCreator.windowShift.x, Float(imageWidth-x1)/convertionRatio-SceneNodeCreator.windowShift.y, 0)
+                        let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio-SceneNodeCreator.windowShift.x, Float(imageWidth-x2)/convertionRatio-SceneNodeCreator.windowShift.y, 0)
                         scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
                         }
                     }

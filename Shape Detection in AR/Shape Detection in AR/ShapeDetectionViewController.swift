@@ -14,8 +14,19 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
 
     let dispatchQueueAR = DispatchQueue(label: "arkit.scan") // A Serial Queue
     private var overlayView : UIView!
+    private var timer : Timer!
+    private var isProcessStart : Bool = false
     
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var processStatus: UIBarButtonItem! {
+        didSet {
+            processStatus.title = "Detect"
+        }
+    }
+    
+    @IBAction func cleanAR(_ sender: UIBarButtonItem) {
+        cleanAR()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +44,8 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
         super.viewWillAppear(animated)
         
         let configuration = ARWorldTrackingConfiguration()  // session config
-        configuration.planeDetection = .horizontal          // plane detection
-        configuration.worldAlignment = .gravity             // Create object with respect to front of camera and gravity
+        //configuration.planeDetection = .horizontal        // plane detection
+        configuration.worldAlignment = .gravity             // Create object with respect to front of camera
         sceneView.session.run(configuration)                // run the session with config
     }
     
@@ -45,14 +56,33 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
 
     private func continuousScanning() {
         dispatchQueueAR.async { [weak self] in
-            //self?.detect()
+            self?.cleanAR()
+            self?.detect()
             self?.continuousScanning()
         }
     }
     
-    //MARK:- Detect
-    @IBAction func detect(_ sender: UIBarButtonItem) {
-        detect()
+    //MARK:- Process
+    @IBAction func doProcess(_ sender: UIBarButtonItem) {
+        if !isProcessStart {
+            cleanAR()
+            detect()
+            /*
+            isProcessStart = true
+            processStatus.title = "Stop"
+            if timer == nil {
+                timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true, block: { [weak self] (timer) in
+                    self?.cleanAR()
+                    self?.detect()
+                })
+            }
+            */
+        } else {
+            isProcessStart = false
+            processStatus.title = "Start"
+            timer.invalidate()
+            timer = nil
+        }
     }
     
     //MARK:- Detect Captured Image
@@ -90,7 +120,7 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
     }
     
     //MARK:- Clean the Scene Nodes 
-    @IBAction func clean(_ sender: UIBarButtonItem) {
+    private func cleanAR() {
        sceneView.scene = SCNScene() // assign an empty scene
     }
     
