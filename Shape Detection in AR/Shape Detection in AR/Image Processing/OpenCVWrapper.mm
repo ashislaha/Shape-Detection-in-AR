@@ -14,12 +14,12 @@
 
 -(void) shapeIdentify :(UIImage *)image {
     self.shapesResults = [[NSMutableArray alloc] init];
-    cv::Mat cameraFeed = [self shapeDetection:image];
-    UIImage * result = [OpenCVWrapper ImageFromCVMat:cameraFeed];
+    cv::Mat cameraFeed = [self shapeDetection:image]; // update self.shapesResults
     
     // save it into photo-galary
-    UIImage * rotatedImage = [[UIImage alloc] initWithCGImage:[result CGImage] scale:1.0 orientation:UIImageOrientationRight];
-    UIImageWriteToSavedPhotosAlbum(rotatedImage, self, nil, nil);
+    // UIImage * result = [OpenCVWrapper ImageFromCVMat:cameraFeed];
+    // UIImage * rotatedImage = [[UIImage alloc] initWithCGImage:[result CGImage] scale:1.0 orientation:UIImageOrientationRight];
+    // UIImageWriteToSavedPhotosAlbum(rotatedImage, self, nil, nil);
 }
 
 -(cv::Mat) shapeDetection :(UIImage *)image { // image is the result of Edge detection, it's in gray scale.

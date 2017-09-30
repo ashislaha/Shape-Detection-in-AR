@@ -69,10 +69,10 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
                 let resizeImage = image.resized(width: 500, height: 500)
                 if let resizeImageInPixelBuffer = resizeImage.pixelBuffer(width: 500, height: 500) {
                     if let edgeDetectedImage = EdgeDetectionUtil.classify(image: resizeImageInPixelBuffer, row: 500, column: 500) {
-                        // save the image into photo library to retrieve other information
-                        let rotatedImage = UIImage(cgImage: edgeDetectedImage.cgImage!, scale: 1.0, orientation: UIImageOrientation.right)
-                        UIImageWriteToSavedPhotosAlbum(rotatedImage, self, nil, nil)
-                        // call open CV frameworks to perform the rest actions
+                        // save the image into photo library for Visualization
+                        // let rotatedImage = UIImage(cgImage: edgeDetectedImage.cgImage!, scale: 1.0, orientation: UIImageOrientation.right)
+                        // UIImageWriteToSavedPhotosAlbum(rotatedImage, self, nil, nil)
+                        
                         self?.sceneView.scene = EdgeDetectionUtil.getShapes(edgeDetectedImage: edgeDetectedImage)
                     }
                 }
