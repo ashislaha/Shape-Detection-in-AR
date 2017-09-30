@@ -366,3 +366,15 @@ It will generate Output :  "It's working”
     UIImageWriteToSavedPhotosAlbum(rotatedImage, self, nil, nil);
     
 
+# Co-ordinate Mapping & SCNNode Create :
+
+![img_4427d21af932-1](https://user-images.githubusercontent.com/10649284/31042288-ff9c0d1a-a5c1-11e7-80f5-f7e638ddaafa.jpeg)
+
+## step 1 : Create A Straight Line : 
+
+## step 2 : Create A Circle :
+
+## Step 3 : Create a Boundary : 
+
+## Step 4 : Map from Image Co-ordinates into AR-Cordinates :
+
