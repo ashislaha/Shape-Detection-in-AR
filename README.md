@@ -1,23 +1,38 @@
 # Shape-Detection-in-AR
 
-Detect the shape of drawing objects (classes - triangle, rectangle, circle) and draw in Augmented Reality.
+Detect the shape of drawing objects (classes - line, triangle, rectangle, pentagon, Hexagon, circle) and draw in Augmented Reality.
+
+# Input Image : 
+![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
+
+# Edge Detected Image : 
+![img_0225](https://user-images.githubusercontent.com/10649284/31043244-59f29ebe-a5d6-11e7-87a6-6ca9209d961f.JPG)
+
+# Find Contour & Fill it for visualization :
+![img_0226](https://user-images.githubusercontent.com/10649284/31043257-8855e70c-a5d6-11e7-8a16-c2a4afee93a9.JPG)
+
+# Create Scene graph :
+![img_4427d21af932-1](https://user-images.githubusercontent.com/10649284/31043182-53017ad6-a5d5-11e7-9067-3100c58808c2.jpeg)
+
  
-Basic Steps : (just concept : work in progress)
+## Basic Steps : 
 
-(1) Take the image from ARFrame 
+## step 1 : Create a mlmodel for Edge Detection (Generic type) 
 
-(2) Do Edge Detection
+## step 2 : Take the image from ARFrame & idenfify edges using edge_detection.mlmodel
 
-(3) Do Regression on pixel informations for better result.
+## step 3 : Find out the Contours in the edge_detected image & calculate the approximation points using openCV.
 
-(4) convert the pixel positions into real world positions.
+## step 4 : Figure the Shapes with it's image co-ordinates from Approximation points 
 
-(5) draw it in ARView with real-world coordinates and shape specifications (like arm length value for triangle, rectangle etc.)
+## step 5 : Map the image co-ordinates of shapes into AR-world co-ordinates
 
+## step 6 : Render Scene Graph 
 
+# In the project, pod is not installed, So please do, "$pod install" before running the project.
 
 -----------------------------------------------------------
-Create an Edge Detection CoreML model 
+# Create an Edge Detection CoreML model 
 -----------------------------------------------------------
 
 Original Caffe Model : http://vcl.ucsd.edu/hed/hed_pretrained_bsds.caffemodel
@@ -114,37 +129,33 @@ metadata {
 --------------------------------------------------------------------------
 ### Use the CoreML Model for detecting Edge of ARFrame captured Camera Image
 
-![img_0086](https://user-images.githubusercontent.com/10649284/30848427-c1cdc94a-a2bc-11e7-827f-767a1ced4cea.PNG) 
+![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
 
-![img_0085](https://user-images.githubusercontent.com/10649284/30851681-f14290ac-a2c6-11e7-9f4b-1af02cde4908.JPG)
+![img_0225](https://user-images.githubusercontent.com/10649284/31043244-59f29ebe-a5d6-11e7-87a6-6ca9209d961f.JPG)
 
+# Open CV framework added : 
 
- NEXT TASK : Convert the coordinates from Image view into real-coordinates.
- 
+## step 1 : create pod file with : pod 'OpenCV'
 
- ### Open CV framework added : 
-
-# step 1 : create pod file with : pod 'OpenCV'
-
-# step 2 : Create a bridging header 
+## step 2 : Create a bridging header 
 	Create an objective-c file from “Cocoa-touch class”
 	name it - OpenCVWrapper 
 	Xcode is smart and proposes to create a bridging header. Click on Create Bridging Header.
 
-# step 3 : Configure the bridging header ($project_name-Bridging-Header.h)
+## step 3 : Configure the bridging header ($project_name-Bridging-Header.h)
 	#import "OpenCVWrapper.h" in the bridging header 
 
-# step 4 : Change to Objective-c++ 
+## step 4 : Change to Objective-c++ 
 	change from OpenCVWrapper.m to OpenCVWrapper.mm
 
-# step 5 : Importing opencv
+## step 5 : Importing opencv
 	#import <opencv2/opencv.hpp>
 	#import "OpenCVWrapper.h"
 	into OpenCVWrapper.mm file. 
 	
-NOTED : You will get ERROR : enum { NO, FEATHER, MULTI_BAND }; because of “NO” enum name. #import <opencv2/opencv.hpp> above all other imports will resolve the issue.
+### NOTED : You will get ERROR : enum { NO, FEATHER, MULTI_BAND }; because of “NO” enum name. #import <opencv2/opencv.hpp> above all other imports will resolve the issue.
 
-# Step 6 : Write a test code 
+## Step 6 : Write a test code 
 	
 	In OpenCVWrapper.h —> -(void) isOpenCVWorking;
 	In OpenCVWrapper.mm —>  @Implementation 
@@ -355,8 +366,8 @@ It will generate Output :  "It's working”
 
 ## Step 8 : Save the result for Visualization 
 
-![img_0196](https://user-images.githubusercontent.com/10649284/31007762-3faa72aa-a51f-11e7-918e-191d55bde391.JPG)
 ![img_0197](https://user-images.githubusercontent.com/10649284/31007763-3fcaea76-a51f-11e7-9c5f-a1ad51ee0467.JPG)
+![img_0196](https://user-images.githubusercontent.com/10649284/31007762-3faa72aa-a51f-11e7-918e-191d55bde391.JPG)
 
     cv::Mat cameraFeed = [self shapeDetection:image];
     UIImage * result = [OpenCVWrapper ImageFromCVMat:cameraFeed];
@@ -527,5 +538,5 @@ The convertion function :
     }
     }
 
-	
-
+![2](https://user-images.githubusercontent.com/10649284/31043758-45e7a622-a5df-11e7-981d-0d079deb2d74.JPG)
+![1](https://user-images.githubusercontent.com/10649284/31043759-47b90ea0-a5df-11e7-9831-ee9b64634ea8.PNG)
