@@ -6,7 +6,7 @@ Detect the shape of drawing objects (classes - triangle, rectangle, circle) and 
 ![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
 
 # Edge Detected Image : 
-![img_0225](https://user-images.githubusercontent.com/10649284/31043216-0f4cabfc-a5d6-11e7-8c31-e88403182802.JPG)
+![img_0225](https://user-images.githubusercontent.com/10649284/31043244-59f29ebe-a5d6-11e7-87a6-6ca9209d961f.JPG)
 
 # Find Contour & Fill it for visualization :
 ![img_0226](https://user-images.githubusercontent.com/10649284/31043219-10c73182-a5d6-11e7-8dd0-f1946c45809f.JPG)
@@ -131,7 +131,7 @@ metadata {
 
 ![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
 
-![img_0225](https://user-images.githubusercontent.com/10649284/31043216-0f4cabfc-a5d6-11e7-8c31-e88403182802.JPG)
+![img_0225](https://user-images.githubusercontent.com/10649284/31043244-59f29ebe-a5d6-11e7-87a6-6ca9209d961f.JPG)
 
 # Open CV framework added : 
 
