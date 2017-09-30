@@ -366,8 +366,8 @@ It will generate Output :  "It's working”
 
 ## Step 8 : Save the result for Visualization 
 
-![img_0196](https://user-images.githubusercontent.com/10649284/31007762-3faa72aa-a51f-11e7-918e-191d55bde391.JPG)
 ![img_0197](https://user-images.githubusercontent.com/10649284/31007763-3fcaea76-a51f-11e7-9c5f-a1ad51ee0467.JPG)
+![img_0196](https://user-images.githubusercontent.com/10649284/31007762-3faa72aa-a51f-11e7-918e-191d55bde391.JPG)
 
     cv::Mat cameraFeed = [self shapeDetection:image];
     UIImage * result = [OpenCVWrapper ImageFromCVMat:cameraFeed];
@@ -538,6 +538,5 @@ The convertion function :
     }
     }
 
-![img1](https://user-images.githubusercontent.com/10649284/31043711-9cc4f1bc-a5de-11e7-8571-1a5e9ae30750.JPG)
-![img2](https://user-images.githubusercontent.com/10649284/31043712-9e4a8556-a5de-11e7-87c5-fc0cfb6e2e18.PNG)
-
+![2](https://user-images.githubusercontent.com/10649284/31043758-45e7a622-a5df-11e7-981d-0d079deb2d74.JPG)
+![1](https://user-images.githubusercontent.com/10649284/31043759-47b90ea0-a5df-11e7-9831-ee9b64634ea8.PNG)
