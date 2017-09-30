@@ -156,13 +156,13 @@ metadata {
 ### NOTED : You will get ERROR : enum { NO, FEATHER, MULTI_BAND }; because of “NO” enum name. #import <opencv2/opencv.hpp> above all other imports will resolve the issue.
 
 ## Step 6 : Write a test code 
-	
+
 	In OpenCVWrapper.h —> -(void) isOpenCVWorking;
 	In OpenCVWrapper.mm —>  @Implementation 
 
-		-(void) isOpenCVWorking {
-    			NSLog(@"It's working");
-		}
+	-(void) isOpenCVWorking {
+    	     NSLog(@"It's working");
+	 }
 
 	@end
 
@@ -408,15 +408,16 @@ It will generate Output :  "It's working”
 
 ## step 2 : Create A Circle :
 
-	class func createCircle(center : SCNVector3, radius : CGFloat) -> SCNNode {
-        	var geometry : SCNGeometry!
-        	geometry = SCNCapsule(capRadius: radius, height: radius)
-       		geometry.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
-		geometry.firstMaterial?.specular.contents = UIColor.getRandomColor()
-        	let node = SCNNode(geometry: geometry)
-       		node.position = center
-        	return node
-    	}
+    class func createCircle(center : SCNVector3, radius : CGFloat) -> SCNNode {
+        var geometry : SCNGeometry!
+        geometry = SCNCylinder(radius: radius, height: 0.01)
+        geometry.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
+        geometry.firstMaterial?.specular.contents = UIColor.getRandomColor()
+        let node = SCNNode(geometry: geometry)
+        node.position = center
+        node.rotation = SCNVector4Make(1, 0, 0, Float(Double.pi/2)) // along X axis
+        return node
+    }
 
 ## Step 3 : Create a Boundary : 
 
