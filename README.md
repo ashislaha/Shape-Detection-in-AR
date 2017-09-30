@@ -2,22 +2,24 @@
 
 Detect the shape of drawing objects (classes - triangle, rectangle, circle) and draw in Augmented Reality.
  
-Basic Steps : (just concept : work in progress)
+## Basic Steps : 
 
-(1) Take the image from ARFrame 
+## step 1 : Create a mlmodel for Edge Detection (Generic type) 
 
-(2) Do Edge Detection
+## step 2 : Take the image from ARFrame & idenfify edges using edge_detection.mlmodel
 
-(3) Do Regression on pixel informations for better result.
+## step 3 : Find out the Contours in the edge_detected image & calculate the approximation points using openCV.
 
-(4) convert the pixel positions into real world positions.
+## step 4 : Figure the Shapes with it's image co-ordinates from Approximation points 
 
-(5) draw it in ARView with real-world coordinates and shape specifications (like arm length value for triangle, rectangle etc.)
+## step 5 : Map the image co-ordinates of shapes into AR-world co-ordinates
 
+## step 6 : Render Scene Graph 
 
+# In the project, pod is not installed, So please do, "$pod install" before running the project.
 
 -----------------------------------------------------------
-Create an Edge Detection CoreML model 
+# Create an Edge Detection CoreML model 
 -----------------------------------------------------------
 
 Original Caffe Model : http://vcl.ucsd.edu/hed/hed_pretrained_bsds.caffemodel
