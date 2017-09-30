@@ -23,8 +23,7 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
         sceneView.delegate = self           // ARSCNViewDelegate for maintaining SCNView objects
         sceneView.session.delegate = self   // ARSessionDelegatem for maintaining Session 
         sceneView.showsStatistics = true
-        let scene = SceneNodeCreator.sceneSetUp()
-        sceneView.scene = scene
+        sceneView.scene = SCNScene()
         navigationController?.navigationBar.backgroundColor = UIColor.clear
         // Scan the ARFrame always
         //continuousScanning() // need to improve the performance without blocking the main-thread --- "Thinking"

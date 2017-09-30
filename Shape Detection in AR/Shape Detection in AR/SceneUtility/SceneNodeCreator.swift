@@ -25,6 +25,125 @@ enum ArrowDirection {
 
 class SceneNodeCreator {
     
+    //MARK:- Create straight Line
+    class func createline(from : SCNVector3 , to : SCNVector3) -> SCNNode { // Z is static
+        // calculate Angle
+        let dx = from.x - to.x
+        let dy = (from.y - to.y)
+        var theta = atan(Double(dy/dx))
+        if theta == .nan {
+            theta = 3.14159265358979 / 2 // 90 Degree
+        }
+        
+        //Create Node
+        let width = CGFloat(sqrt( dx*dx + dy*dy ))
+        let height : CGFloat = 0.01
+        let length : CGFloat = 0.08
+        let chamferRadius : CGFloat = 0.01
+        let route = SCNBox(width: width, height: height, length: length, chamferRadius: chamferRadius)
+        route.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
+        let midPosition = SCNVector3Make((from.x+to.x)/2, (from.y+to.y)/2,0)
+        let node = SCNNode(geometry: route)
+        node.position = midPosition
+        node.rotation = SCNVector4Make(0, 0, 1, Float(theta)) // along Z axis
+        return node
+    }
+    
+    //MARK:- Create Circle
+    class func createCircle(center : SCNVector3, radius : CGFloat) -> SCNNode {
+        var geometry : SCNGeometry!
+        geometry = SCNCapsule(capRadius: radius, height: radius)
+        geometry.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
+        geometry.firstMaterial?.specular.contents = UIColor.getRandomColor()
+        let node = SCNNode(geometry: geometry)
+        node.position = center
+        return node
+    }
+    
+    //MARK:- Add boundary Node
+    class func boundaryNode() -> SCNNode {
+        let node = SCNNode()
+        let points : [(Float,Float)] = [(0.0,0.0),(0.5,0.0), (0.5,0.5), (0.0,0.5)]
+        
+        for i in 0..<4 {
+            let x1 = points[i].0
+            let y1 = points[i].1
+            let x2 = points[(i+1)%points.count].0
+            let y2 = points[(i+1)%points.count].1
+            
+            let from = SCNVector3Make(x1,y1,0)
+            let to = SCNVector3Make(x2,y2,0)
+            node.addChildNode(SceneNodeCreator.createline(from: from, to: to))
+        }
+      return node
+    }
+    
+    // calculate nodes based on data for shape detection
+    class func getSceneNode(shapreResults : [[String : Any]] ) -> SCNScene { // input is array of dictionary
+        let scene = SCNScene()
+        let convertionRatio : Float = 1000.0
+        let imageWidth : Int = 499
+        
+        for eachShape in shapreResults {
+            if let dictionary = eachShape.first {
+                
+                let values = dictionary.value as! [[String : Any]]
+                switch dictionary.key {
+                case "circle" :
+                    
+                    // check for values if approx.points is more than 7 then circle.
+                    if values.count > 7 { // draw circle
+                        if let circleParams = values.first as? [String : Float] {
+                            let x = circleParams["center.x"] ?? 0.0
+                            let y = circleParams["center.y"] ?? 0.0
+                            let radius = circleParams["radius"] ?? 0.0
+                            let center = SCNVector3Make(Float(Float(imageWidth)-y)/convertionRatio, Float(Float(imageWidth)-x)/convertionRatio, 0)
+                            scene.rootNode.addChildNode(SceneNodeCreator.createCircle(center: center, radius: CGFloat(radius/convertionRatio*2.0)))
+                        }
+                    } else { // draw lines between points
+                        for i in 1..<values.count { // connect all points usning straight lines (basic)
+                            let x1 = values[i]["x"] as! Int
+                            let y1 = values[i]["y"] as! Int
+                            let next = (i == values.count-1) ?  (i+2) : (i+1)
+                            let x2 = values[next%values.count]["x"] as! Int
+                            let y2 = values[next%values.count]["y"] as! Int
+                            
+                            let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
+                            let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
+                            scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
+                        }
+                    }
+                case "triangle", "rectangle","pentagon" :
+                    for i in 0..<values.count { // connect all points usning straight lines (basic)
+                        let x1 = values[i]["x"] as! Int
+                        let y1 = values[i]["y"] as! Int
+                        let x2 = values[(i+1)%values.count]["x"] as! Int
+                        let y2 = values[(i+1)%values.count]["y"] as! Int
+                        
+                        // skip the boundary Rectangle here
+                        if x1>10 && x1<490 {
+                        let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
+                        let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
+                        scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
+                        }
+                    }
+                default :
+                    print("This is default for Drawing node ")
+                }
+            }
+        }
+        // add boundary
+        scene.rootNode.addChildNode(SceneNodeCreator.boundaryNode())
+        return scene
+    }
+}
+
+/*
+         ******************************** Below extension NOT USED FOR SHAPE DETECTION *******************************
+ */
+
+extension SceneNodeCreator {
+    
     class func getGeometryNode(type : GeometryNode, position : SCNVector3, text : String? = nil, imageName : String? = nil) -> SCNNode {
         var geometry : SCNGeometry!
         switch type {
@@ -276,96 +395,6 @@ class SceneNodeCreator {
         let scene = SCNScene()
         scene.rootNode.addChildNode(SceneNodeCreator.getGeometryNode(type: .Box, position: SCNVector3Make(-1, 0, -1), text: "Hi"))
         scene.rootNode.addChildNode(SceneNodeCreator.create3DText("Hello World", position: SCNVector3Make(0, 0, -0.2)))
-        return scene
-    }
-    
-    //MARK:- Create straight Line
-    class func createline(from : SCNVector3 , to : SCNVector3) -> SCNNode { // Z is static
-        // calculate Angle
-        let dx = from.x - to.x
-        let dy = (from.y - to.y)
-        var theta = atan(Double(dy/dx))
-        if theta == .nan {
-            theta = 3.14159265358979 / 2 // 90 Degree
-        }
-        
-        //Create Node
-        let width = CGFloat(sqrt( dx*dx + dy*dy ))
-        let height : CGFloat = 0.01
-        let length : CGFloat = 0.08
-        let chamferRadius : CGFloat = 0.01
-        let route = SCNBox(width: width, height: height, length: length, chamferRadius: chamferRadius)
-        route.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
-        let midPosition = SCNVector3Make((from.x+to.x)/2, (from.y+to.y)/2,0)
-        let node = SCNNode(geometry: route)
-        node.position = midPosition
-        node.rotation = SCNVector4Make(0, 0, 1, Float(theta)) // along Z axis
-        return node
-    }
-    
-    //MARK:- Create Circle
-    class func createCircle(center : SCNVector3, radius : CGFloat) -> SCNNode {
-        var geometry : SCNGeometry!
-        geometry = SCNCapsule(capRadius: radius, height: radius)
-        geometry.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
-        geometry.firstMaterial?.specular.contents = UIColor.getRandomColor()
-        let node = SCNNode(geometry: geometry)
-        node.position = center
-        return node
-    }
-    
-    // calculate nodes based on data for shape detection
-    class func getSceneNode(shapreResults : [[String : Any]] ) -> SCNScene { // input is array of dictionary
-        let scene = SCNScene()
-        let convertionRatio : Float = 1000.0
-        let imageWidth : Int = 500
-        
-        for eachShape in shapreResults {
-            if let dictionary = eachShape.first {
-                
-                let values = dictionary.value as! [[String : Any]]
-                switch dictionary.key {
-                case "circle" :
-                    
-                    // check for values if approx.points is more than 7 then circle.
-                    if values.count > 7 { // draw circle
-                        if let circleParams = values.first as? [String : Float] {
-                            let x = circleParams["center.x"] ?? 0.0
-                            let y = circleParams["center.y"] ?? 0.0
-                            let radius = circleParams["radius"] ?? 0.0
-                            let center = SCNVector3Make(Float(500.0-y)/convertionRatio, Float(500.0-x)/convertionRatio, 0)
-                            scene.rootNode.addChildNode(SceneNodeCreator.createCircle(center: center, radius: CGFloat(radius)))
-                        }
-                    } else { // draw lines between points
-                        for i in 1..<values.count { // connect all points usning straight lines (basic)
-                            let x1 = values[i]["x"] as! Int
-                            let y1 = values[i]["y"] as! Int
-                            let next = (i == values.count-1) ?  (i+2) : (i+1)
-                            let x2 = values[next%values.count]["x"] as! Int
-                            let y2 = values[next%values.count]["y"] as! Int
-                            
-                            let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
-                            let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
-                            scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
-                        }
-                    }
-                case "triangle", "rectangle","pentagon" :
-                    for i in 0..<values.count { // connect all points usning straight lines (basic)
-                        let x1 = values[i]["x"] as! Int
-                        let y1 = values[i]["y"] as! Int
-                        let x2 = values[(i+1)%values.count]["x"] as! Int
-                        let y2 = values[(i+1)%values.count]["y"] as! Int
-                        
-                        let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
-                        let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
-                        scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
-                    }
-                default :
-                    print("This is default for Drawing node ")
-                }
-            }
-        }
-        
         return scene
     }
 }
