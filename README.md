@@ -18,7 +18,7 @@ Also mention the shape type along with drawing.
 
 # Example : 
 ![2](https://user-images.githubusercontent.com/10649284/31055884-634d54ce-a6e7-11e7-91b8-59fd820321f3.JPG)
-![3](https://user-images.githubusercontent.com/10649284/31055872-51e50f88-a6e7-11e7-9de1-c8054ff37e53.PNG)
+![4](https://user-images.githubusercontent.com/10649284/31056054-7c2a42c0-a6e9-11e7-8672-ea91ea8a5b2f.jpeg)
  
 ## Basic Steps : 
 
@@ -545,4 +545,4 @@ The convertion function :
     }
 
 ![2](https://user-images.githubusercontent.com/10649284/31055884-634d54ce-a6e7-11e7-91b8-59fd820321f3.JPG)
-![3](https://user-images.githubusercontent.com/10649284/31055872-51e50f88-a6e7-11e7-9de1-c8054ff37e53.PNG)
+![4](https://user-images.githubusercontent.com/10649284/31056054-7c2a42c0-a6e9-11e7-8672-ea91ea8a5b2f.jpeg)
