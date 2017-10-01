@@ -120,9 +120,9 @@ class SceneNodeCreator {
                         let y2 = values[1]["y"] as! Int
                         let center = SceneNodeCreator.center(diagonal_p1: (Float(x1),Float(y1)), diagonal_p2: (Float(x2),Float(y2)))
                         let centerVector = SCNVector3Make((Float(imageWidth)-center.1)/convertionRatio+SceneNodeCreator.windowRoot.x,
-                                                          (Float(imageWidth)-center.0)/convertionRatio+SceneNodeCreator.windowRoot.y,
+                                                          (Float(imageWidth)-center.0)/convertionRatio+SceneNodeCreator.windowRoot.y+0.01,
                                                           SceneNodeCreator.z)
-                        scene.rootNode.addChildNode(SceneNodeCreator.create3DText("R", position: centerVector))
+                        scene.rootNode.addChildNode(SceneNodeCreator.create3DText("L", position: centerVector))
                         
                     case 3 : // traingle
                         let x1 = values[0]["x"] as! Int
