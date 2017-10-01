@@ -25,8 +25,8 @@ enum ArrowDirection {
 
 class SceneNodeCreator {
     
-    static let windowRoot : (x:Float,y:Float) = (-0.25,0.0) // default is (0.0,0.0)
-    static let z : Float = 0.0
+    static let windowRoot : (x:Float,y:Float) = (-0.25,-0.25) // default is (0.0,0.0)
+    static let z : Float = -0.5 // Z axis of AR co-ordinates
     
     //MARK:- Create straight Line
     class func createline(from : SCNVector3 , to : SCNVector3) -> SCNNode { // Z is static
@@ -45,7 +45,7 @@ class SceneNodeCreator {
         let chamferRadius : CGFloat = 0.01
         let route = SCNBox(width: width, height: height, length: length, chamferRadius: chamferRadius)
         route.firstMaterial?.diffuse.contents = UIColor.getRandomColor()
-        let midPosition = SCNVector3Make((from.x+to.x)/2, (from.y+to.y)/2,0)
+        let midPosition = SCNVector3Make((from.x+to.x)/2, (from.y+to.y)/2,(from.z+to.z)/2)
         let node = SCNNode(geometry: route)
         node.position = midPosition
         node.rotation = SCNVector4Make(0, 0, 1, Float(theta)) // along Z axis

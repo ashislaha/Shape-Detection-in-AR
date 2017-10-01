@@ -16,20 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </arscnView>
-                    <navigationItem key="navigationItem" title="Shape Detection" id="aIs-dz-pgm">
-                        <barButtonItem key="leftBarButtonItem" title="Clean" id="ZaG-dJ-aGb">
-                            <connections>
-                                <action selector="cleanAR:" destination="BV1-FR-VrT" id="acM-nf-yjx"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Detect" id="dFe-yT-e4t">
-                            <connections>
-                                <action selector="doProcess:" destination="BV1-FR-VrT" id="duG-jX-qVs"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Shape Detection" id="aIs-dz-pgm"/>
                     <connections>
-                        <outlet property="processStatus" destination="dFe-yT-e4t" id="xq8-MR-tAA"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>

@@ -14,19 +14,12 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
 
     let dispatchQueueAR = DispatchQueue(label: "arkit.scan") // A Serial Queue
     private var overlayView : UIView!
-    private var timer : Timer!
     private var isProcessStart : Bool = false
+    private let configuration = ARWorldTrackingConfiguration()  // session config
+    var detectButton : UIButton!
+    var cleanButton  : UIButton!
     
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var processStatus: UIBarButtonItem! {
-        didSet {
-            processStatus.title = "Detect"
-        }
-    }
-    
-    @IBAction func cleanAR(_ sender: UIBarButtonItem) {
-        cleanAR()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,23 +28,26 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
         sceneView.session.delegate = self   // ARSessionDelegatem for maintaining Session 
         sceneView.showsStatistics = true
         sceneView.scene = SCNScene()
-        navigationController?.navigationBar.backgroundColor = UIColor.clear
+        addDetectButton()
+        addCleanButton()
         // Scan the ARFrame always
         //continuousScanning() // need to improve the performance without blocking the main-thread --- "Thinking"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let configuration = ARWorldTrackingConfiguration()  // session config
-        //configuration.planeDetection = .horizontal        // plane detection
-        configuration.worldAlignment = .gravity             // Create object with respect to front of camera
-        sceneView.session.run(configuration)                // run the session with config
+        runConfig()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        addCleanButton()
+        addDetectButton()
     }
 
     private func continuousScanning() {
@@ -62,34 +58,74 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
         }
     }
     
-    //MARK:- Process
-    @IBAction func doProcess(_ sender: UIBarButtonItem) {
-        if !isProcessStart {
-            cleanAR()
-            detect()
-            /*
-            isProcessStart = true
-            processStatus.title = "Stop"
-            if timer == nil {
-                timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true, block: { [weak self] (timer) in
-                    self?.cleanAR()
-                    self?.detect()
-                })
-            }
-            */
-        } else {
-            isProcessStart = false
-            processStatus.title = "Start"
-            timer.invalidate()
-            timer = nil
-        }
+    //MARK:- Reset config
+    private func resetConfig() {
+        self.sceneView.session.run(configuration, options: .resetTracking)
+    }
+    
+    //MARK:- Run new config
+    private func runConfig() {
+        //configuration.planeDetection = .horizontal        // plane detection
+        configuration.worldAlignment = .gravity             // Create object with respect to front of camera
+        sceneView.session.run(configuration)                // run the session with config
     }
     
     //MARK:- Detect Captured Image
-    private func detect() {
+    @objc private func detect() {
+        resetConfig()
+        runConfig()
+        cleanAR()
         if let image = self.sceneView.session.currentFrame?.capturedImage {
             self.detectCapturedImage(image: image)
         }
+    }
+    
+    fileprivate func addDetectButton() {
+        if detectButton != nil { detectButton.removeFromSuperview() }
+        
+        let buttonWidth : CGFloat = 100.0
+        let windowWidth = (getWindow().width > 0) ? getWindow().width : buttonWidth+20.0
+        let windowHeight = (getWindow().height > 0) ? getWindow().height : CGFloat(600.0)
+  
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(self.detect), for: .touchUpInside)
+        button.setTitle("Detect", for: .normal)
+        button.frame = CGRect(x: windowWidth-buttonWidth-10.0, y: windowHeight-200.0, width: buttonWidth, height: 40.0)
+        button.backgroundColor = UIColor.blue
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 20.0
+        detectButton = button
+        view.addSubview(detectButton)
+    }
+
+    //MARK:- Clean the Scene Nodes
+    @objc private func cleanAR() {
+        sceneView.scene = SCNScene() // assign an empty scene
+        resetConfig()
+    }
+    
+    fileprivate func addCleanButton() {
+        if cleanButton != nil { cleanButton.removeFromSuperview() }
+        
+        let buttonWidth : CGFloat = 100.0
+        let windowWidth = (getWindow().width > 0) ? getWindow().width : buttonWidth+20.0
+        let windowHeight = (getWindow().height > 0) ? getWindow().height : CGFloat(600.0)
+        
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(self.cleanAR), for: .touchUpInside)
+        button.setTitle("Clean", for: .normal)
+        button.frame = CGRect(x: windowWidth-buttonWidth-10.0, y: windowHeight-120.0, width: buttonWidth, height: 40.0)
+        button.backgroundColor = UIColor.red
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 20.0
+        cleanButton = button
+        view.addSubview(cleanButton)
+    }
+    
+    private func getWindow() -> CGRect {
+        guard let appDelegate = UIApplication.shared.delegate else { return CGRect(origin: .zero, size: .zero) }
+        guard let window = appDelegate.window else { return CGRect(origin: .zero, size: .zero) }
+        return window?.frame ?? CGRect(origin: .zero, size: .zero)
     }
     
     private func detectCapturedImage( image : CVPixelBuffer) {
@@ -119,10 +155,6 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
         return nil
     }
     
-    //MARK:- Clean the Scene Nodes 
-    private func cleanAR() {
-       sceneView.scene = SCNScene() // assign an empty scene
-    }
     
     // MARK: - ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
