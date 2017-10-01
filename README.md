@@ -1,6 +1,8 @@
 # Shape-Detection-in-AR
 
-Detect the shape of drawing objects (classes - line, triangle, rectangle, pentagon, Hexagon, circle) and draw in Augmented Reality.
+Detect the shape of drawing objects (classes - line, triangle, rectangle, pentagon, Hexagon, circle) and draw in Augmented Reality. 
+Also mention the shape type along with drawing. 
+## Like : "L" - Line, "T" - Triangle , "R" - Rectangle, "C" - Circle, "P" - Pentagon, "H" - Hexagon
 
 # Input Image : 
 ![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
@@ -14,6 +16,9 @@ Detect the shape of drawing objects (classes - line, triangle, rectangle, pentag
 # Create Scene graph :
 ![img_4427d21af932-1](https://user-images.githubusercontent.com/10649284/31043182-53017ad6-a5d5-11e7-9067-3100c58808c2.jpeg)
 
+# Example : 
+![2](https://user-images.githubusercontent.com/10649284/31055884-634d54ce-a6e7-11e7-91b8-59fd820321f3.JPG)
+![3](https://user-images.githubusercontent.com/10649284/31055872-51e50f88-a6e7-11e7-9de1-c8054ff37e53.PNG)
  
 ## Basic Steps : 
 
@@ -539,5 +544,5 @@ The convertion function :
     }
     }
 
-![2](https://user-images.githubusercontent.com/10649284/31043758-45e7a622-a5df-11e7-981d-0d079deb2d74.JPG)
-![1](https://user-images.githubusercontent.com/10649284/31043759-47b90ea0-a5df-11e7-9831-ee9b64634ea8.PNG)
+![2](https://user-images.githubusercontent.com/10649284/31055884-634d54ce-a6e7-11e7-91b8-59fd820321f3.JPG)
+![3](https://user-images.githubusercontent.com/10649284/31055872-51e50f88-a6e7-11e7-9de1-c8054ff37e53.PNG)
