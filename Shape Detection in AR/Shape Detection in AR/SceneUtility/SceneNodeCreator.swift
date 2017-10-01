@@ -119,7 +119,7 @@ class SceneNodeCreator {
                         let x2 = values[1]["x"] as! Int
                         let y2 = values[1]["y"] as! Int
                         let center = SceneNodeCreator.center(diagonal_p1: (Float(x1),Float(y1)), diagonal_p2: (Float(x2),Float(y2)))
-                        let centerVector = SCNVector3Make((Float(imageWidth)-center.1)/convertionRatio+SceneNodeCreator.windowRoot.x,
+                        let centerVector = SCNVector3Make((Float(imageWidth)-center.1)/convertionRatio+SceneNodeCreator.windowRoot.x+0.01,
                                                           (Float(imageWidth)-center.0)/convertionRatio+SceneNodeCreator.windowRoot.y+0.01,
                                                           SceneNodeCreator.z)
                         scene.rootNode.addChildNode(SceneNodeCreator.create3DText("L", position: centerVector))
