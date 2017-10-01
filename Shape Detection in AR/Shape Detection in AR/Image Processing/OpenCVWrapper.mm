@@ -83,6 +83,9 @@
                 NSString * shape = @"";
                 
                 switch (approx.size()) {
+                    case 2: // line
+                        printf("Line");
+                        shape = @"line";
                     case 3: // Triangle
                         printf("Triangle");
                         shape = @"triangle";
@@ -94,6 +97,10 @@
                     case 5: // Pentagon
                         printf("Pentagon");
                         shape = @"pentagon";
+                        break;
+                    case 6: //Hexagon
+                        printf("Hexagon");
+                        shape = @"hexagon";
                         break;
                     default: // circle
                         printf("circle \t");
