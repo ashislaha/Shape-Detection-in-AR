@@ -489,6 +489,8 @@ The convertion function :
         let scene = SCNScene()
         let convertionRatio : Float = 1000.0
         let imageWidth : Int = 499
+        let xMin = 10
+        let xMax = 490
         
         for eachShape in shapreResults {
             if let dictionary = eachShape.first {
@@ -497,29 +499,21 @@ The convertion function :
                 switch dictionary.key {
                 case "circle" :
                     
-                    // check for values if approx.points is more than 7 then circle.
-                    if values.count > 7 { // draw circle
-                        if let circleParams = values.first as? [String : Float] {
-                            let x = circleParams["center.x"] ?? 0.0
-                            let y = circleParams["center.y"] ?? 0.0
-                            let radius = circleParams["radius"] ?? 0.0
-                            let center = SCNVector3Make(Float(Float(imageWidth)-y)/convertionRatio, Float(Float(imageWidth)-x)/convertionRatio, 0)
-                            scene.rootNode.addChildNode(SceneNodeCreator.createCircle(center: center, radius: CGFloat(radius/convertionRatio*2.0)))
-                        }
-                    } else { // draw lines between points
-                        for i in 1..<values.count { // connect all points usning straight lines (basic)
-                            let x1 = values[i]["x"] as! Int
-                            let y1 = values[i]["y"] as! Int
-                            let next = (i == values.count-1) ?  (i+2) : (i+1)
-                            let x2 = values[next%values.count]["x"] as! Int
-                            let y2 = values[next%values.count]["y"] as! Int
-                            
-                            let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
-                            let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
-                            scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
-                        }
+                    if let circleParams = values.first as? [String : Float] {
+                        let x = circleParams["center.x"] ?? 0.0
+                        let y = circleParams["center.y"] ?? 0.0
+                        let radius = circleParams["radius"] ?? 0.0
+                        let center = SCNVector3Make(Float(Float(imageWidth)-y)/convertionRatio+SceneNodeCreator.windowRoot.x, Float(Float(imageWidth)-x)/convertionRatio+SceneNodeCreator.windowRoot.y, SceneNodeCreator.z)
+                        scene.rootNode.addChildNode(SceneNodeCreator.createCircle(center: center, radius: CGFloat(radius/convertionRatio)))
+                        
+                        // adding text
+                        var textPosition = center
+                        textPosition.y = textPosition.y + (radius/convertionRatio) + 0.01
+                        scene.rootNode.addChildNode(SceneNodeCreator.create3DText("C", position: textPosition))
+                        
                     }
-                case "triangle", "rectangle","pentagon" :
+                    
+                case "line","triangle", "rectangle","pentagon","hexagon":
                     for i in 0..<values.count { // connect all points usning straight lines (basic)
                         let x1 = values[i]["x"] as! Int
                         let y1 = values[i]["y"] as! Int
@@ -527,12 +521,75 @@ The convertion function :
                         let y2 = values[(i+1)%values.count]["y"] as! Int
                         
                         // skip the boundary Rectangle here
-                        if x1>10 && x1<490 {
-                        let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio, Float(imageWidth-x1)/convertionRatio, 0)
-                        let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio, Float(imageWidth-x2)/convertionRatio, 0)
-                        scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
+                        if x1>xMin && x1<xMax {
+                            let from = SCNVector3Make(Float(imageWidth-y1)/convertionRatio+SceneNodeCreator.windowRoot.x, Float(imageWidth-x1)/convertionRatio+SceneNodeCreator.windowRoot.y, SceneNodeCreator.z)
+                            let to = SCNVector3Make(Float(imageWidth-y2)/convertionRatio+SceneNodeCreator.windowRoot.x, Float(imageWidth-x2)/convertionRatio+SceneNodeCreator.windowRoot.y, SceneNodeCreator.z)
+                            scene.rootNode.addChildNode(SceneNodeCreator.createline(from: from, to: to))
                         }
                     }
+                    
+                    // add shape description
+                    switch values.count {
+                    case 2: // line
+                        let x1 = values[0]["x"] as! Int
+                        let y1 = values[0]["y"] as! Int
+                        let x2 = values[1]["x"] as! Int
+                        let y2 = values[1]["y"] as! Int
+                        
+                        if x1>xMin && x1<xMax {
+                            let center = SceneNodeCreator.center(diagonal_p1: (Float(x1),Float(y1)), diagonal_p2: (Float(x2),Float(y2)))
+                            let centerVector = SCNVector3Make((Float(imageWidth)-center.1)/convertionRatio+SceneNodeCreator.windowRoot.x+0.01,
+                                                              (Float(imageWidth)-center.0)/convertionRatio+SceneNodeCreator.windowRoot.y+0.01,
+                                                              SceneNodeCreator.z)
+                            scene.rootNode.addChildNode(SceneNodeCreator.create3DText("L", position: centerVector))
+                        }
+                        
+                    case 3 : // traingle
+                        let x1 = values[0]["x"] as! Int
+                        let y1 = values[0]["y"] as! Int
+                        let x2 = values[1]["x"] as! Int
+                        let y2 = values[1]["y"] as! Int
+                        let x3 = values[2]["x"] as! Int
+                        let y3 = values[2]["y"] as! Int
+                        
+                        if x1>xMin && x1<xMax {
+                            let centroid = SceneNodeCreator.centroidOfTriangle(point1: (Float(x1),Float(y1)), point2: (Float(x2),Float(y2)), point3: (Float(x3),Float(y3)))
+                            let centerVector = SCNVector3Make((Float(imageWidth)-centroid.1)/convertionRatio+SceneNodeCreator.windowRoot.x,
+                                                              (Float(imageWidth)-centroid.0)/convertionRatio+SceneNodeCreator.windowRoot.y,
+                                                              SceneNodeCreator.z)
+                            scene.rootNode.addChildNode(SceneNodeCreator.create3DText("T", position: centerVector))
+                        }
+                        
+                    case 4: // Rectangle
+                        let x1 = values[0]["x"] as! Int
+                        let y1 = values[0]["y"] as! Int
+                        let x2 = values[2]["x"] as! Int
+                        let y2 = values[2]["y"] as! Int
+                        if x1>xMin && x1<xMax {
+                            let center = SceneNodeCreator.center(diagonal_p1: (Float(x1),Float(y1)), diagonal_p2: (Float(x2),Float(y2)))
+                            let centerVector = SCNVector3Make((Float(imageWidth)-center.1)/convertionRatio+SceneNodeCreator.windowRoot.x,
+                                                              (Float(imageWidth)-center.0)/convertionRatio+SceneNodeCreator.windowRoot.y,
+                                                              SceneNodeCreator.z)
+                            scene.rootNode.addChildNode(SceneNodeCreator.create3DText("R", position: centerVector))
+                        }
+                    case 5,6: // pentagon, Hexagon
+                        let x1 = values[0]["x"] as! Int
+                        let y1 = values[0]["y"] as! Int
+                        let x2 = values[3]["x"] as! Int
+                        let y2 = values[3]["y"] as! Int
+                        
+                        if x1>xMin && x1<xMax {
+                            let center = SceneNodeCreator.center(diagonal_p1: (Float(x1),Float(y1)), diagonal_p2: (Float(x2),Float(y2)))
+                            let centerVector = SCNVector3Make((Float(imageWidth)-center.1)/convertionRatio+SceneNodeCreator.windowRoot.x,
+                                                              (Float(imageWidth)-center.0)/convertionRatio+SceneNodeCreator.windowRoot.y,
+                                                              SceneNodeCreator.z)
+                            let text = (values.count == 5) ? "P" : "H"
+                            scene.rootNode.addChildNode(SceneNodeCreator.create3DText(text, position: centerVector))
+                        }
+                    default:
+                        print("NO Shape")
+                    }
+                    
                 default :
                     print("This is default for Drawing node ")
                 }
@@ -542,7 +599,7 @@ The convertion function :
         scene.rootNode.addChildNode(SceneNodeCreator.boundaryNode())
         return scene
     }
-    }
+
 
 ![2](https://user-images.githubusercontent.com/10649284/31055884-634d54ce-a6e7-11e7-91b8-59fd820321f3.JPG)
 ![4](https://user-images.githubusercontent.com/10649284/31056054-7c2a42c0-a6e9-11e7-8672-ea91ea8a5b2f.jpeg)
