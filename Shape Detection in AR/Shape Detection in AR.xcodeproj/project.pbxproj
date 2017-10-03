@@ -18,7 +18,6 @@
 		80D10F7B1F751D39002C21FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D10F791F751D39002C21FB /* LaunchScreen.storyboard */; };
 		80D10F861F751D39002C21FB /* Shape_Detection_in_ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F851F751D39002C21FB /* Shape_Detection_in_ARTests.swift */; };
 		80D10F911F751D39002C21FB /* Shape_Detection_in_ARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F901F751D39002C21FB /* Shape_Detection_in_ARUITests.swift */; };
-		80D10FA01F752274002C21FB /* ImagePreProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10F9F1F752274002C21FB /* ImagePreProcessing.swift */; };
 		80D10FA41F753452002C21FB /* SceneNodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D10FA31F7522A8002C21FB /* SceneNodeCreator.swift */; };
 		8E7DEE16174F15CB52519E76 /* libPods-Shape Detection in AR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6640ED5ED7C6B1EE5D0D5C5B /* libPods-Shape Detection in AR.a */; };
 /* End PBXBuildFile section */
@@ -63,7 +62,6 @@
 		80D10F8C1F751D39002C21FB /* Shape Detection in ARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shape Detection in ARUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D10F901F751D39002C21FB /* Shape_Detection_in_ARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape_Detection_in_ARUITests.swift; sourceTree = "<group>"; };
 		80D10F921F751D39002C21FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80D10F9F1F752274002C21FB /* ImagePreProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreProcessing.swift; sourceTree = "<group>"; };
 		80D10FA31F7522A8002C21FB /* SceneNodeCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				801C924F1F78CA2200C00BAC /* edge_detection.mlmodel */,
-				80D10F9F1F752274002C21FB /* ImagePreProcessing.swift */,
 				801C924B1F78B99900C00BAC /* EdgeDetectionUtil.swift */,
 				8061415E1F7BFC5400654670 /* OpenCVWrapper.h */,
 				8061415F1F7BFC5400654670 /* OpenCVWrapper.mm */,
@@ -387,7 +384,6 @@
 				806141601F7BFC5400654670 /* OpenCVWrapper.mm in Sources */,
 				80D10F6F1F751D39002C21FB /* AppDelegate.swift in Sources */,
 				801C92501F78CA2700C00BAC /* edge_detection.mlmodel in Sources */,
-				80D10FA01F752274002C21FB /* ImagePreProcessing.swift in Sources */,
 				801C924C1F78B99900C00BAC /* EdgeDetectionUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

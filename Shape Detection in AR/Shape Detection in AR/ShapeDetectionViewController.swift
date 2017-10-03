@@ -24,6 +24,7 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationTitle()
         sceneView.delegate = self           // ARSCNViewDelegate for maintaining SCNView objects
         sceneView.session.delegate = self   // ARSessionDelegatem for maintaining Session 
         sceneView.showsStatistics = true
@@ -68,6 +69,25 @@ class ShapeDetectionViewController: UIViewController, ARSCNViewDelegate , ARSess
         //configuration.planeDetection = .horizontal        // plane detection
         configuration.worldAlignment = .gravity             // Create object with respect to front of camera
         sceneView.session.run(configuration)                // run the session with config
+    }
+    
+    //MARK:- Set title
+    private func setNavigationTitle() {
+        // let's create some attributed string
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.gray
+        shadow.shadowBlurRadius = 3.0
+        shadow.shadowOffset = CGSize(width: 3.0, height: 3.0)
+        
+        let attributedString = NSMutableAttributedString(string: "Shape Detection", attributes: [
+            NSAttributedStringKey.foregroundColor : UIColor.red,   // text color
+            NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20), // Font size
+            NSAttributedStringKey.shadow : shadow // shadow effect
+            ])
+        let label = UILabel()
+        label.attributedText = attributedString
+        label.sizeToFit()
+        self.navigationItem.titleView = label
     }
     
     //MARK:- Detect Captured Image

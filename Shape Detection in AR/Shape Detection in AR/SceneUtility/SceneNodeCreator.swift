@@ -196,6 +196,45 @@ class SceneNodeCreator {
     class func center(diagonal_p1: (Float,Float), diagonal_p2 : (Float,Float)) -> (Float,Float) {
         return ((diagonal_p1.0+diagonal_p2.0)/2 ,(diagonal_p1.1+diagonal_p2.1)/2)
     }
+    
+    //MARK:- 3D Text
+    class func create3DText(_ text : String, position : SCNVector3) -> SCNNode {
+        
+        // Warning: Creating 3D Text is susceptible to crashing. To reduce chances of crashing; reduce number of polygons, letters, smoothness, etc.
+        
+        // text billboard constraint
+        let billboardConstraint = SCNBillboardConstraint()
+        billboardConstraint.freeAxes = SCNBillboardAxis.Y
+        
+        // text
+        let depth : CGFloat = 0.01
+        let bubble = SCNText(string: text, extrusionDepth: depth)
+        var font = UIFont(name: "Futura", size: 0.15)
+        font = font?.withTraits(traits: .traitItalic)
+        bubble.font = font
+        bubble.alignmentMode = kCAAlignmentCenter
+        bubble.firstMaterial?.diffuse.contents = UIColor.orange
+        bubble.firstMaterial?.specular.contents = UIColor.white
+        bubble.firstMaterial?.isDoubleSided = true
+        bubble.chamferRadius = CGFloat(depth)
+        
+        // node
+        let (minBound, maxBound) = bubble.boundingBox
+        let bubbleNode = SCNNode(geometry: bubble)
+        
+        // Centre Node - to Centre-Bottom point
+        bubbleNode.pivot = SCNMatrix4MakeTranslation( (maxBound.x - minBound.x)/2, minBound.y, Float(depth/2))
+        
+        // Reduce default text size
+        bubbleNode.scale = SCNVector3Make(0.12, 0.12, 0.12)
+        
+        let bubbleNodeParent = SCNNode()
+        bubbleNodeParent.addChildNode(bubbleNode)
+        bubbleNodeParent.constraints = [billboardConstraint]
+        bubbleNodeParent.position = position
+        
+        return bubbleNodeParent
+    }
 }
 
 /*
@@ -418,45 +457,6 @@ extension SceneNodeCreator {
             return image
         }
         return nil
-    }
-    
-    //MARK:- 3D Text
-    class func create3DText(_ text : String, position : SCNVector3) -> SCNNode {
-        
-        // Warning: Creating 3D Text is susceptible to crashing. To reduce chances of crashing; reduce number of polygons, letters, smoothness, etc.
-        
-        // text billboard constraint
-        let billboardConstraint = SCNBillboardConstraint()
-        billboardConstraint.freeAxes = SCNBillboardAxis.Y
-        
-        // text
-        let depth : CGFloat = 0.01
-        let bubble = SCNText(string: text, extrusionDepth: depth)
-        var font = UIFont(name: "Futura", size: 0.15)
-        font = font?.withTraits(traits: .traitItalic)
-        bubble.font = font
-        bubble.alignmentMode = kCAAlignmentCenter
-        bubble.firstMaterial?.diffuse.contents = UIColor.orange
-        bubble.firstMaterial?.specular.contents = UIColor.white
-        bubble.firstMaterial?.isDoubleSided = true
-        bubble.chamferRadius = CGFloat(depth)
-        
-        // node
-        let (minBound, maxBound) = bubble.boundingBox
-        let bubbleNode = SCNNode(geometry: bubble)
-        
-        // Centre Node - to Centre-Bottom point
-        bubbleNode.pivot = SCNMatrix4MakeTranslation( (maxBound.x - minBound.x)/2, minBound.y, Float(depth/2))
-        
-        // Reduce default text size
-        bubbleNode.scale = SCNVector3Make(0.12, 0.12, 0.12)
-        
-        let bubbleNodeParent = SCNNode()
-        bubbleNodeParent.addChildNode(bubbleNode)
-        bubbleNodeParent.constraints = [billboardConstraint]
-        bubbleNodeParent.position = position
-        
-        return bubbleNodeParent
     }
     
     
