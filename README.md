@@ -285,6 +285,9 @@ It will generate Output :  "It's working”
                 NSString * shape = @"";
                 
                 switch (approx.size()) {
+                    case 2: // line
+                        printf("Line");
+                        shape = @"line";
                     case 3: // Triangle
                         printf("Triangle");
                         shape = @"triangle";
@@ -296,6 +299,10 @@ It will generate Output :  "It's working”
                     case 5: // Pentagon
                         printf("Pentagon");
                         shape = @"pentagon";
+                        break;
+                    case 6: //Hexagon
+                        printf("Hexagon");
+                        shape = @"hexagon";
                         break;
                     default: // circle
                         printf("circle \t");
@@ -312,19 +319,18 @@ It will generate Output :  "It's working”
                                                 @"center.y":[NSNumber numberWithFloat:center.y]
                                                 };
                     [positions addObject:dict];
-                } else {
-                    for (int j = 0; j < approx.size(); j++) {
-                        NSDictionary * dict = @{ @"x":[NSNumber numberWithInt:approx[j].x], @"y":[NSNumber numberWithInt:approx[j].y]};
-                        [positions addObject:dict];
-                    }
                 }
-                
+                for (int j = 0; j < approx.size(); j++) {
+                    NSDictionary * dict = @{ @"x":[NSNumber numberWithInt:approx[j].x], @"y":[NSNumber numberWithInt:approx[j].y]};
+                    [positions addObject:dict];
+                }
                 [self.shapesResults addObject:@{shape:positions}]; // update the dictionary
             }
         }
     }
     return cameraFeed;
 }
+
 
 ## step 7 : Convert cv::Matrix into UIImage again 
 
