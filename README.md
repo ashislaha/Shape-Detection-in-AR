@@ -4,6 +4,8 @@ Detect the shape of drawing objects (classes - line, triangle, rectangle, pentag
 Also mention the shape type along with drawing. 
 ## Like : "L" - Line, "T" - Triangle , "R" - Rectangle, "C" - Circle, "P" - Pentagon, "H" - Hexagon
 
+## iTunes Link : https://itunes.apple.com/us/app/shape-detection-ar/id1292244288?ls=1&mt=8
+
 # Input Image : 
 ![img_2662](https://user-images.githubusercontent.com/10649284/31043178-4a9bf024-a5d5-11e7-849d-e88e00c9f7a5.JPG)
 
