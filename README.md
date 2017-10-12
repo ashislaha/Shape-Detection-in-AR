@@ -1,4 +1,4 @@
-# Shape Detection in Augmented Reality(AR)
+# Shape Detection and Drawing in Augmented Reality(AR)
 
 Detect the shape of drawing objects (classes - line, triangle, rectangle, pentagon, Hexagon, circle) and draw in Augmented Reality. 
 Also mention the shape type along with drawing. 
