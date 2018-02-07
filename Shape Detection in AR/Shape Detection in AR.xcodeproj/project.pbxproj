@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F931060202A62A8005D5C2A /* edge_detection+Fritz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93105F202A62A8005D5C2A /* edge_detection+Fritz.swift */; };
 		801C924C1F78B99900C00BAC /* EdgeDetectionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C924B1F78B99900C00BAC /* EdgeDetectionUtil.swift */; };
 		801C92501F78CA2700C00BAC /* edge_detection.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 801C924F1F78CA2200C00BAC /* edge_detection.mlmodel */; };
 		806141601F7BFC5400654670 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8061415F1F7BFC5400654670 /* OpenCVWrapper.mm */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		1D8D0B105345A11026AC202B /* Pods-Shape Detection in AR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Detection in AR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shape Detection in AR/Pods-Shape Detection in AR.debug.xcconfig"; sourceTree = "<group>"; };
 		54C0646099A43F2115952DC6 /* Pods-Shape Detection in AR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Detection in AR.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shape Detection in AR/Pods-Shape Detection in AR.release.xcconfig"; sourceTree = "<group>"; };
+		5F93105F202A62A8005D5C2A /* edge_detection+Fritz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "edge_detection+Fritz.swift"; sourceTree = "<group>"; };
 		6640ED5ED7C6B1EE5D0D5C5B /* libPods-Shape Detection in AR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shape Detection in AR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		801C924B1F78B99900C00BAC /* EdgeDetectionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeDetectionUtil.swift; sourceTree = "<group>"; };
 		801C924F1F78CA2200C00BAC /* edge_detection.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = edge_detection.mlmodel; path = "../../../CoreML creation/edge_detection.mlmodel"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				8061415E1F7BFC5400654670 /* OpenCVWrapper.h */,
 				8061415F1F7BFC5400654670 /* OpenCVWrapper.mm */,
 				8061415D1F7BFC5400654670 /* Shape Detection in AR-Bridging-Header.h */,
+				5F93105F202A62A8005D5C2A /* edge_detection+Fritz.swift */,
 			);
 			path = "Image Processing";
 			sourceTree = "<group>";
@@ -333,9 +336,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Shape Detection in AR/Pods-Shape Detection in AR-frameworks.sh",
+				"${PODS_ROOT}/Fritz/Framework/Fritz.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fritz.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -348,13 +354,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shape Detection in AR-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC2E531B0EABF3AFE836D392 /* [CP] Copy Pods Resources */ = {
@@ -382,6 +391,7 @@
 				80D10F731F751D39002C21FB /* ShapeDetectionViewController.swift in Sources */,
 				80D10FA41F753452002C21FB /* SceneNodeCreator.swift in Sources */,
 				806141601F7BFC5400654670 /* OpenCVWrapper.mm in Sources */,
+				5F931060202A62A8005D5C2A /* edge_detection+Fritz.swift in Sources */,
 				80D10F6F1F751D39002C21FB /* AppDelegate.swift in Sources */,
 				801C92501F78CA2700C00BAC /* edge_detection.mlmodel in Sources */,
 				801C924C1F78B99900C00BAC /* EdgeDetectionUtil.swift in Sources */,

@@ -1,4 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
 target 'Shape Detection in AR’ do
 pod 'OpenCV'
+pod 'Fritz', '~> 1.0.0-beta'
 end

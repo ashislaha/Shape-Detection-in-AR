@@ -12,12 +12,14 @@ import CoreML
 import SceneKit
 
 
+// Initialize the model once
+let mlModel = edge_detection().fritz()
+
+
 class EdgeDetectionUtil {
     
     //MARK:- Classification
     class func classify(image : CVPixelBuffer , row : Int = 500, column : Int = 500) -> UIImage? {
-        
-        let mlModel = edge_detection()
 
         // retrieve features
         let featureProvider: MLFeatureProvider = try! mlModel.prediction(data: image)
